@@ -25,7 +25,7 @@ Flux is built to explore the frontier of **AI-assisted development** and **Agent
 * **Constraint-Based Logic:** Designed prompts and logic layers to ensure outputs remain grounded in sports science principles (e.g., adhering to the 10% rule for weekly mileage increases).
 
 ## 📈 Roadmap & Product Evolution
-- [ ] **Phase 1 (MVP):** Direct Google Calendar integration and automated rescheduling logic.
+- [X] **Phase 1 (MVP):** Direct Google Calendar integration and automated rescheduling logic.
 - [ ] **Phase 2:** Biometric API integration (Apple HealthKit) for automated intensity throttling.
 - [ ] **Phase 3:** "Contextual Grounding" using RAG (Retrieval-Augmented Generation) to allow the AI to "remember" a user's past performance trends and preferred workout types.
 
