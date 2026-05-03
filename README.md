@@ -6,7 +6,7 @@
 [**View the Full PRD**](./PRD.md)
 
 ## 🏃 The Problem
-Most running apps provide static plans that exist in a vacuum. When life happens—a late-night meeting, poor sleep, or an unexpected trip—the plan breaks. Users are left to manually adjust their training or, more often, lose consistency and abandon the plan entirely.
+Most running apps provide static plans that exist in a vacuum. When life happens (e.g. a late-night meeting, poor sleep, or an unexpected trip) the plan breaks. Users are left to manually adjust their training or, more often, lose consistency and abandon the plan entirely.
 
 **Flux** transforms the training plan into a living agent that responds to real-time constraints, ensuring training consistency even when schedules shift.
 
