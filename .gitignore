@@ -1,0 +1,12 @@
+.vercel
+.env
+__pycache__/
+*.pyc
+.DS_Store
+flux-5a768f6f-main
+node_modules/
+dist/
+build/
+.next/
+celerybeat-schedule
+vercel_logs.txt

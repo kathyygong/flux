@@ -1,0 +1,74 @@
+Flux: The Anti-Fragile Training Engine
+Comprehensive Product Requirements Document (PRD) & Technical Specification v4.0
+1. Product Vision & Strategy
+Flux is an AI-native "Adherence Partner" for runners. While traditional training apps provide rigid schedules that break under real-world pressure, Flux treats schedule shifts, physical fatigue, and travel as data points to be negotiated. The goal is to maximize long-term consistency by ensuring a "Plan A" failure always leads to a viable "Plan B."
+2. Problem Statement
+* Bio-Rigidity: Standard plans prescribe high-intensity workouts regardless of the user's actual recovery state (HRV/Sleep).
+* The Churn Factor: 65% of runners abandon training plans within 6 weeks due to "Life Interference" (work, travel, illness).
+* The Psychological Burden: Missing a run creates "Plan Guilt," leading to total abandonment of the goal rather than a logical adjustment.
+* The Rigid Market: Existing apps require high manual effort to reschedule or lack the physiological intelligence to adapt to a user's current physical state.
+* The Travel Churn: Travel is a primary cause of plan attrition due to environment shifts and circadian rhythm disruptions.
+3. Detailed Feature Requirements
+3.1 The Triple-Lookahead Intelligence
+Tier
+	Lookahead
+	Action
+ 
+	Macro
+	1+ Months
+	Identifies "High-Risk Weeks" (holidays, travel, busy quarters) and adjusts periodization in advance (proactively shifts high-load "Peak Weeks" to align with open calendar blocks).
+	Meso
+	7 Days
+	Locks high-intensity sessions into the days with the most open calendar space and highest historical energy.
+	Micro
+	24 Hours
+	Emergency pivot. Detects new meetings or poor recovery and proposes a modified session or time-shift.
+	3.2 Biometric Throttling & Environmental Adaptation
+* Physiological Guardrails: Adjusts intensity by ±5-15% if Sleep or HRV drops below rolling baselines.
+* Jet Lag Protocol: Detects >3hr timezone shifts. Converts all "Quality" runs (Intervals/Tempo) into "Zone 2" effort-based runs for the first 48 hours to mitigate cardiovascular stress.
+3.3 The "1-Tap Handshake" (Informed Proposal)
+Flux never changes a plan silently. To maintain user agency, Flux utilizes an "Informed Proposal" model rather than silent automation. Every adjustment is presented as a push notification.
+1. Detects conflict or bio-issue.
+2. Presents a clear rationale ("I noticed you slept 5 hours...").
+3. Updates plan accordingly and presents two actionable buttons: [Accept Adjustment] or [Keep Original Plan].
+3.4 Internal Gamification & Behavioral Incentives
+* Resiliency Streaks: Unlike traditional streaks that break if a workout is missed, Flux streaks remain active as long as the user engages with the "1-Tap Handshake" and completes the proposed pivot. This gamifies plan flexibility and long-term adherence.
+* Adaptive Achievement Badges: Private milestones awarded for navigating high-interference periods. Examples include "The Jet Lag Juggernaut" (completing recovery runs during timezone shifts) or "Adaptive Master" (5 consecutive accepted and completed pivots).
+* Recovery Gamification: Visualizing recovery data (e.g., Body Battery) to incentivize rest. Completing a recommended rest day during a "Biometric Throttling" event provides a "Smart Recovery" boost.
+* Private Progress Mandate: To reduce social anxiety and external pressure, all gamification features are strictly private. No public leaderboards are supported, focusing the user entirely on personal consistency.
+4. Success Metrics
+* P0: Plan Completion Rate (PCR): % Plans completed.
+* P0: Resiliency Score. Ratio of (Adjusted Runs Completed + Original Runs Completed) to (Skipped Runs).
+* P1: Secondary: Retention-After-Crisis. User churn rate in the 14 days following a major calendar conflict or travel trip.
+* P1: Engagement: Proposal Acceptance Rate. % of AI suggestions that are accepted by the user.
+5. Technical Specification
+5.1 Architecture Overview
+* Backend: FastAPI (Python) for asynchronous webhook handling and AI orchestration.
+* Database: PostgreSQL with relational mapping for Training Plans, Activities, and Context Logs.
+* Workers: Celery/Redis for scheduled lookahead scans.
+* Intelligence: LLM Reasoning Agent utilizing a "Context Bundle" JSON.
+
+
+5.2 Data Ingestion
+Source
+	Integration
+	Key Data Points
+ 
+	Calendar
+	Google/Outlook/Apple API
+	Busy/Free blocks, Timezones.
+	Wearables/Health Data
+	Oura/Garmin SDK/Apple Watch/Apple Health
+	HRV, Sleep Duration, Resting HR.
+	Environmental
+	Weather/Maps API
+	Temperature, Sunset, Route Density.
+	5.3 Logic Flow Example: The "Macro-to-Micro" Journey
+Scenario: User is training for a Marathon.
+July (Macro): User creates the marathon training plan. When generating the plan, Flux checks the user’s calendar and detects a trip to London in September. It moves the 18-mile Long Run to the Saturday before the trip.
+September (Meso): On Sunday, Flux sees a busy Monday and swaps the Monday speed workout with Tuesday’s easy run. 
+Monday (Micro): User stays out late. Tuesday 6 AM: Flux pings: "Resting heart rate is high. Let's swap these hills for a 20-min yoga session. Sound good?"
+6. Roadmap & MVP Phases
+* Phase 1: Calendar/Wearable OAuth integrations and "Meso" (Weekly) scheduler.
+* Phase 2: LLM-driven "Proposal Engine" and 1-tap Handshake UI.
+* Phase 3: Jet Lag logic and Internal Gamification features (Resiliency Streaks, Recovery Incentives).

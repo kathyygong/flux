@@ -1,0 +1,22 @@
+name: Flux
+options:
+  bundleIdPrefix: com.flux
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+settings:
+  SWIFT_VERSION: "5.9"
+  DEVELOPMENT_TEAM: ""
+targets:
+  Flux:
+    type: application
+    platform: iOS
+    sources:
+      - Flux
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.flux.app
+      INFOPLIST_FILE: Flux/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Flux/Flux.entitlements
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    entitlements:
+      path: Flux/Flux.entitlements
