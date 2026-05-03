@@ -1,28 +1,44 @@
-# Flux | AI-Driven Adaptive Training Engine
+# Product Requirements Document: Project Flux
 
-**Adaptive training plans for a dynamic life.** *Built with Next.js, Antigravity, and Cursor.*
+**Author:** Katherine Gong  
+**Status:** In Development (Alpha)  
+**Last Updated:** May 2026
 
-[![Project Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-green)](https://github.com/kathyygong/flux)
-[**View the Full PRD**](./PRD.md)
+## 1. Executive Summary
+Flux is an AI-native training engine designed to solve the "consistency gap" in endurance sports. Unlike static training platforms, Flux utilizes real-time biometric and calendar data to dynamically adapt training schedules, ensuring users stay on track regardless of external life stressors.
 
-## 🏃 The Problem
-Most running apps provide static plans that exist in a vacuum. When life happens—a late-night meeting, poor sleep, or an unexpected trip—the plan breaks. Users are left to manually adjust their training or, more often, lose consistency and abandon the plan entirely.
+## 2. Problem Statement
+Existing training apps (Strava, Nike Run Club, Garmin Connect) create rigid plans that do not account for the volatility of a modern user's schedule. 
+* **The Result:** Users miss workouts due to work/life conflicts, leading to "all-or-nothing" thinking and plan abandonment.
+* **The Opportunity:** An agentic system that treats a training plan as a fluid optimization problem rather than a static list of tasks.
 
-**Flux** transforms the training plan into a living agent that responds to real-time constraints, ensuring training consistency even when schedules shift.
+## 3. Target Audience
+* **The "Busy Professional" Runner:** High-achievers who value fitness but have unpredictable schedules.
+* **The "Data-Forward" Athlete:** Users with wearables (Oura, Garmin, Apple Watch) who want their data to actually *do* something rather than just provide a report.
 
-## ✨ Key Product Features
-* **Adaptive Calendar Synchronization:** * **Strategic:** Pre-builds plans around known blockers (work cycles, travel).
-    * **Reactive (24-Hour):** Adjusts or swaps workouts in real-time based on last-minute calendar conflicts.
-* **Apple Health Integration:** Aggregates biometric data (HRV, Sleep, Resting HR) from wearable devices via HealthKit to "throttle" training intensity based on physiological recovery.
-* **Intelligent Rescheduling:** If a workout is missed, Flux re-optimizes the remaining week to maintain the physiological objective of the training block rather than just "moving" the task.
+## 4. Functional Requirements
 
-## 🛠 The AI Stack & Strategy
-As a Product Manager, I built Flux to explore **Agentic Orchestration** and **Automated Quality Benchmarking**.
+### 4.1 Multi-Tier Calendar Integration
+* **Requirement:** The system must sync with Google/Outlook calendars to identify "High-Intensity Work Blocks" or travel.
+* **Outcome:** AI automatically suggests shorter/lower-intensity runs during busy periods to maintain consistency.
 
-* **Antigravity (Orchestration):** The "reasoning engine" that synthesizes multi-variable inputs (Calendar + Apple Health + Training History) into actionable plan shifts.
-* **Cursor (AI-Assisted Dev):** Leveraged AI-native pair programming to accelerate the feedback loop from PRD to functional MVP.
-* **LLM-as-a-Judge (Evaluation):** Implemented an automated evaluation framework to benchmark plan safety. Every generated workout is "judged" by a secondary model against sports science constraints (e.g., preventing excessive weekly mileage spikes) to ensure plan integrity.
+### 4.2 Biometric Recovery Feedback (HealthKit)
+* **Requirement:** Integrate with Apple Health to pull Sleep, HRV, and Resting Heart Rate data.
+* **Outcome:** If biometrics signal poor recovery (e.g., HRV 20% below baseline), the AI "throttles" the scheduled high-intensity workout to a recovery run.
 
-## 📂 Project Documentation
-* **[Product Requirements Document (PRD)](./PRD.md):** Strategy, User Personas, and Success Metrics.
-* **[Architecture Overview](./Architecture.md):** Data flow between HealthKit, Antigravity, and Postgres.
+### 4.3 Agentic Plan Generation (Antigravity)
+* **Requirement:** Utilize Antigravity to orchestrate the "Reasoning Loop."
+* **Logic:** Input (Calendar Conflict) → Analyze (Training Goal) → Evaluate (Biometrics) → Output (New Workout Suggestion).
+
+## 5. Non-Functional Requirements
+* **Safety & Integrity (LLM-as-a-Judge):** All AI-generated workouts must pass a "safety check" model to ensure mileage increases do not exceed 10% week-over-week.
+* **Latency:** Plan rescheduling should occur in < 5 seconds to ensure a seamless mobile experience.
+
+## 6. Success Metrics (KPIs)
+* **Primary Metric (Adherence):** % of users who complete 90% of their "Adaptive Plan" compared to a 60% industry average for static plans.
+* **Secondary Metric (Retention):** Month 3 retention rate (target > 40%).
+* **North Star Metric:** "Consistent Weeks"—weeks where a user completes at least 3 runs, regardless of intensity.
+
+## 7. Future Roadmap
+* **V2:** Community "Challenges" that adapt to the group's collective fatigue levels.
+* **V3:** Integration with nutrition APIs to suggest fueling strategies based on predicted workout intensity.
