@@ -22,11 +22,22 @@ Existing training apps (Strava, Nike Run Club, Garmin Connect) create rigid plan
 * **Requirement:** The system must sync with Google/Outlook calendars to identify "High-Intensity Work Blocks" or travel.
 * **Outcome:** AI automatically suggests shorter/lower-intensity runs during busy periods to maintain consistency.
 
-### 4.2 Biometric Recovery Feedback (HealthKit)
-* **Requirement:** Integrate with Apple Health to pull Sleep, HRV, and Resting Heart Rate data.
-* **Outcome:** If biometrics signal poor recovery (e.g., HRV 20% below baseline), the AI "throttles" the scheduled high-intensity workout to a recovery run.
+### 4.2 Biometric Intelligence & Environmental Adaptation
+* **Requirement:** Integrate with Apple Health and wearable tech (Oura, Garmin, etc.) to pull Sleep, HRV, and Resting Heart Rate data.
+* **Physiological Guardrails:** If biometrics signal poor recovery (e.g., HRV/sleep drops below rolling 3-month baseline), the AI "throttles" the scheduled session intensity by 5-15%.
+* **Jet Lag Protocol:** Detects timezone shifts >3 hours. Converts "Quality" runs into effort-based "Zone 2" runs for the first 48 hours to mitigate cardiovascular stress.
 
-### 4.3 Agentic Plan Generation (Antigravity)
+### 4.3. Informed Proposal Model
+Flux never changes a plan silently. To maintain user agency, Flux utilizes an "Informed Proposal" model rather than silent automation. Every adjustment is presented as a push notification.
+* **Rationale-First Delivery:** Push notifications lead with the *reasoning* (e.g., "Noticing 5h sleep and a 9 AM meeting...") before showing the adjustment.
+* **Actionable Handshake UI:** Users are presented with a clear choice: **[Accept Adjustment]** or **[Keep Original Plan]**. 
+
+### 4.4 Internal Gamification 
+* **Resiliency Streaks:** Streaks remain active as long as the user engages with the Handshake UI and completes a suggested pivot.
+* **Achievement Badges:** Private milestones for navigating interference (e.g., "Jet Lag Juggernaut," "Adaptive Master").
+* **Recovery Boosts:** Incentivizes rest by rewarding users for completing recommended recovery sessions during "High Strain" biometric events.
+
+### 4.5 Agentic Plan Generation (Antigravity)
 * **Requirement:** Utilize Antigravity to orchestrate the "Reasoning Loop."
 * **Logic:** Input (Calendar Conflict) → Analyze (Training Goal) → Evaluate (Biometrics) → Output (New Workout Suggestion).
 
@@ -35,10 +46,31 @@ Existing training apps (Strava, Nike Run Club, Garmin Connect) create rigid plan
 * **Latency:** Plan rescheduling should occur in < 5 seconds to ensure a seamless mobile experience.
 
 ## 6. Success Metrics (KPIs)
-* **Primary Metric (Adherence):** % of users who complete 90% of their "Adaptive Plan" compared to a 60% industry average for static plans.
-* **Secondary Metric (Retention):** Month 3 retention rate (target > 40%).
-* **North Star Metric:** "Consistent Weeks"—weeks where a user completes at least 3 runs, regardless of intensity.
+| Priority | Metric | Definition |
+| :--- | :--- | :--- |
+| **P0** | **Plan Completion Rate (PCR)** | % of total training plans successfully finished. |
+| **P0** | **Resiliency Score** | Ratio of (Adjusted Runs + Original Runs) to (Skipped Runs). |
+| **P1** | **Retention-After-Crisis** | User churn rate in the 14 days following a major calendar conflict/trip. |
+| **P1** | **Proposal Acceptance Rate** | % of AI-generated suggestions accepted by the user via the Handshake UI. |
 
-## 7. Future Roadmap
-* **V2:** Community "Challenges" that adapt to the group's collective fatigue levels.
-* **V3:** Integration with nutrition APIs to suggest fueling strategies based on predicted workout intensity.
+## 7. Roadmap
+
+### V1: The Functional Foundation (MVP)
+* Calendar/Health OAuth integrations.
+* Calendar scheduler logic.
+* Basic 1-tap Handshake UI.
+
+### V2: Contextual Grounding & Personalization
+* **Feature:** RAG-enhanced "Coach Memory."
+* **Logic:** The AI synthesizes historical adherence data to learn user preferences (e.g., preferred time of day, surface preference, or response to specific workout types).
+* **PM Goal:** Close the "Trust Gap" by ensuring adaptive suggestions align with personal habits, not just technical availability.
+
+### V3: Gamification
+* **Feature:** Resiliency gamification, including Resiliency Streaks, Adaptive Achievement Badges, and Recovery Smart Boosts.
+* **Logic:** A centralized reward system that triggers progress milestones and streak maintenance whenever a user negotiates a pivot or adheres to biometric-triggered rest days.
+* **PM Goal:** Minimize "all-or-nothing" abandonment by transitioning user identity from raw performance achievement to consistency.
+
+### V4: Dynamic Fueling Integration
+* **Feature:** Adaptive Nutrition Strategy.
+* **Logic:** Integration with nutrition platforms to provide real-time fueling adjustments based on changes in the training plan.
+* **PM Goal:** Expand the "Performance" value prop by ensuring the user is physically fueled for the workouts the AI suggests.
